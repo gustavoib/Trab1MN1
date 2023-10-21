@@ -3,66 +3,14 @@
 #include <iostream>
 #include <stdlib.h>
 
+import funcoes;
+
 using namespace std;
 
 void defaultValues();
 void customValues();
 
-// f(d) = a*d – d*ln(d)
-double f(double x, double aux) { return (aux * x - x * log(x)); }
-
-double fLinha(double x, double aux) { return ((aux - 1) - log(x)); }
-
-// Função que realiza o cálculo da raiz utilizando o método da bisseção
-long double bissecao(double a, double b, double epsilon) {
-  cout << endl << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Método da bisseção =-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
-
-  double aux = 1;
-  double fa = f(a, aux), fb = f(b, aux);
-
-  if ((fa * fb) > 0) {
-    cout << "Intervalo inválido: função não muda de sinal entre a e b" << endl;
-    return 0;
-  }
-
-  double x = 0;
-  double fx = 0;
-  int count = -1;
-  double intervX = fabs(b - a);
-
-  while (true) {
-    count += 1;
-
-    x = (a + b) / 2;
-    fx = f(x, aux);
-    fa = f(a, aux);
-    fb = f(b, aux);
-
-    if (fa * fx > 0)
-      a = x;
-    else
-      b = x;
-
-    cout << fixed;
-    cout << setprecision(7);
-    cout << left << setw(5) << "| " << setw(5) << "K =" << setw(5) << count
-         << " | " << setw(5) << "X =" << setw(10) << x << " | " << setw(10)
-         << "IntervX =" << setw(10) << intervX << endl;
-
-    if (intervX < epsilon) {
-      cout << endl << "CRITÉRIO DE PARADA ATINGIDO" << endl << endl;
-      break;
-    }
-
-    intervX = intervX / 2;
-  }
-
-  cout << "Valor de X (Bisseção): " << x << endl << endl;
-  return x;
-}
-
-
-// Função que realiza o cálculo da raiz utilizando o método do ponto falso
+// Função que realiza o cálculo da raiz utilizando o método do posicao falsa
 long double pf(double a, double b, double epsilon) {
   cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Método da Posição falsa "
           "=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
