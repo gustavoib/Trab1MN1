@@ -8,12 +8,7 @@ double f(double x, double aux);
 double fLinha(double x, double aux);
 
 // Função que encontra o intervalo
-void achaIntervalo(double a, double &x1, double &x2, double passo);
-
-// função que retorna erro relativo
-double calcularErroRelativo(double valorAnterior, double valorAtual);
-
-
+void achaIntervalo(double a, long double &x1, long double &x2, double passo);
 
 
 #endif

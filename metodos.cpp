@@ -23,7 +23,6 @@ long double bissecao(double a, double b, double aux, double epsilon) {
   int count = -1;
   double intervX = fabs(b - a);
   double lastX = a;
-  double erro;
   string quebra;
 
   while (true) {
@@ -33,8 +32,6 @@ long double bissecao(double a, double b, double aux, double epsilon) {
     fx = f(x, aux);
     fa = f(a, aux);
     fb = f(b, aux);
-
-    erro =  calcularErroRelativo(lastX, x);
 
     if (x > 2) {
       quebra = "SIM";
@@ -50,7 +47,6 @@ long double bissecao(double a, double b, double aux, double epsilon) {
          << "IntervX =" << setw(10) << intervX << " | " << setw(5)
          << "A =" << a  << " | " << setw(5)
          << "B =" << b << " | " << setw(10)
-         << "Erro =" << setw(10) << erro << " | " << setw(10)
          << "Quebra? " << setw(10) << quebra << endl;
 
     if (fa * fx > 0)
@@ -73,7 +69,7 @@ long double bissecao(double a, double b, double aux, double epsilon) {
 }
 
 // Função que realiza o cálculo da raiz utilizando o método do posicao falsa
-double pf(double a, double b, double aux, double epsilon) {
+long double pf(long double a, long double b, double aux, double epsilon) {
   cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Método da Posição falsa =-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
 
   long double fa = f(a, aux), fb = f(b, aux);
@@ -88,7 +84,6 @@ double pf(double a, double b, double aux, double epsilon) {
   int count = -1;
   long double intervX;
   long double lastX = a;
-  long double erro;
   string quebra;
 
   while (true) {
@@ -99,8 +94,6 @@ double pf(double a, double b, double aux, double epsilon) {
     x = ((a * fb) - (b * fa)) / (fb - fa);
     fx = f(x, aux);
 
-    erro =  calcularErroRelativo(lastX, x);
-
     intervX = fabs(b - a);
 
     if (x > 2) {
@@ -110,15 +103,14 @@ double pf(double a, double b, double aux, double epsilon) {
     }
 
     cout << fixed;
-    cout << setprecision(7);
-    cout << left << setw(5) << "| " << setw(5) 
-         << "K =" << setw(5) << count << " | " << setw(5) 
-         << "X =" << setw(10) << x << " | " << setw(10)
-         << "IntervX =" << setw(10) << intervX << " | " << setw(5)
-         << "A =" << lastX  << " | " << setw(5)
-         << "B =" << b << " | " << setw(10)
-         << "Erro =" << setw(10) << erro << " | " << setw(10)
-         << "Quebra? " << setw(10) << quebra << endl;
+      cout << setprecision(7);
+      cout << left << setw(5) << "| " << setw(5) 
+           << "K =" << setw(5) << count << " | " << setw(5)
+           << "X =" << setw(10) << x << " | " << setw(10)
+           << "IntervX =" << setw(10) << intervX << " | " << setw(5)
+           << "A =" << a  << " | " << setw(5)
+           << "B =" << b << " | " << setw(10)
+           << "Quebra? " << setw(10) << quebra << endl;
 
     if (fa * fx > 0)
       a = x;
@@ -146,14 +138,12 @@ long double newton(double a, double chute, double epsilon) {
   double x = (a + chute) / 2;
   x = fabs(x);
   double lastX = x;
-  double erro;
   string quebra;
 
   while (true) {
     double x1 = x - (f(x, a) / fLinha(x, a));
     intervX = fabs(x1 - x);
     x1 = fabs(x1);
-    erro = calcularErroRelativo(lastX, x1);
 
     if (x1 > 2) {
       quebra = "SIM";
@@ -165,11 +155,9 @@ long double newton(double a, double chute, double epsilon) {
     cout << setprecision(7);
     cout << left << setw(5) << " | " << setw(5) 
          << "K = " << setw(5) << count << " | " << setw(5) 
-         << "X = " << setw(10) << x << " | " << setw(10)
+         << "X = " << setw(10) << x1 << " | " << setw(10)
          << "IntervX = " << setw(10) << intervX << " | " << setw(5)
-         << "A = " << lastX  << " | " << setw(5)
-         << "B = " << x1 << " | " << setw(10)
-         << "Erro = " << setw(10) << erro << " | " << setw(10)
+         << "Last X = " << lastX  << " | " << setw(5)
          << "Quebra? " << setw(10) << quebra << endl;
 
     lastX = x1;
@@ -178,7 +166,9 @@ long double newton(double a, double chute, double epsilon) {
       cout << endl << "CRITÉRIO DE PARADA ATINGIDO" << endl << endl;
       break;
     }
+
     x = x1;
+    
     count += 1;
   }
 
@@ -187,40 +177,40 @@ long double newton(double a, double chute, double epsilon) {
 }
 
 // Abordagem recursiva para posição falsa
-long double pfRecursiva(double a, double b, double epsilon, double aux, int count) {
-    double fa = f(a, aux), fb = f(b, aux),fx;
+// long double pfRecursiva(double a, double b, double epsilon, double aux, int count) {
+//     double fa = f(a, aux), fb = f(b, aux),fx;
 
-    if (fa * fb >0 ){
-      cout << "Intervalo inválido: função não muda de sinal entre a e b" << endl;
-    return 0;
-  }
+//     if (fa * fb >0 ){
+//       cout << "Intervalo inválido: função não muda de sinal entre a e b" << endl;
+//     return 0;
+//   }
 
-  double x ;
+//   double x ;
 
-  double intervX = fabs(b-a);
-  x =  (a*fb - b*fa)/(fb-fa);
+//   double intervX = fabs(b-a);
+//   x =  (a*fb - b*fa)/(fb-fa);
 
-  if (intervX > epsilon){ 
-
-
-  x =  (a*fb - b*fa)/(fb-fa);
-
-  fx = f(x, aux);
+//   if (intervX > epsilon){ 
 
 
-  cout << left << setw(5) << " | " << setw(5) << "K = " << setw(5) << count << " | " << setw(5) << "X = "<< setw(10)<< " | " << setw(10) << intervX << endl;
+//   x =  (a*fb - b*fa)/(fb-fa);
 
-  ++count;
+//   fx = f(x, aux);
 
-      if(fa * fx > 0 ){
-    return pfRecursiva(x, b, epsilon, aux, count );
-  }
-  else 
-    return pfRecursiva(a, x, epsilon, aux, count);    
-  }
 
-  cout << "CRITÉRIO DE PARADA ATINGIDO" << endl << endl;
+//   cout << left << setw(5) << " | " << setw(5) << "K = " << setw(5) << count << " | " << setw(5) << "X = "<< setw(10)<< " | " << setw(10) << intervX << endl;
 
-return x;
+//   ++count;
 
-}
+//       if(fa * fx > 0 ){
+//     return pfRecursiva(x, b, epsilon, aux, count );
+//   }
+//   else 
+//     return pfRecursiva(a, x, epsilon, aux, count);    
+//   }
+
+//   cout << "CRITÉRIO DE PARADA ATINGIDO" << endl << endl;
+
+// return x;
+
+// }

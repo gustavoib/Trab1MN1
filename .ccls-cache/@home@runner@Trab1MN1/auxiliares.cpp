@@ -18,17 +18,9 @@ double fLinha(double x, double aux) {
 
 // função para encontrar novos intervalos
 // Função para encontrar um intervalo com raiz
-void achaIntervalo(double a, double &x1, double &x2, double passo) {  
-  /*
-  if (a > 0) {
-    x1 = 1;
-  }
-  else {
-    x1 = 0;
-  }
-*/
+void achaIntervalo(double a, long double &x1, long double &x2, double passo) {  
   if (a <= 0) {
-    x1 = 0.00001;
+    x1 = 1e-10;
   }
   else {
     x1 = 1;
@@ -42,19 +34,6 @@ void achaIntervalo(double a, double &x1, double &x2, double passo) {
   }
 }
 
-double calcularErroRelativo(double valorAnterior, double valorAtual) {
-  if (valorAnterior != 0.0) {
-    return abs((valorAtual - valorAnterior) / (valorAnterior));
-  } else {
-    // Lidar com o caso em que o valor anterior é zero (para evitar divisão por zero)
-    if (valorAtual == 0.0) {
-      return 0.0; // Ambos são zero, então o erro relativo é zero.
-    } else {
-      return numeric_limits<double>::
-          infinity(); // O valor anterior é zero, mas o valor atual não é.
-    }
-  }
-}
 
 // int main() {
 //     double parametro_a = 1.0; // Valor do parâmetro 'a'
