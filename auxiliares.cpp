@@ -34,6 +34,17 @@ void achaIntervalo(double a, long double &x1, long double &x2, double passo) {
   }
 }
 
+void exibeQuadroComparativo(double a, double b, double epsilon, int ajuste, double primeiroChute, double resultBissecao, double resultPF, double resultNewton, int passosBissecao, int passosPF, int passosNewton){
+    cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Quadro comparativo =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl
+    << "Parâmetro de ajuste: " << ajuste << " | " << "Precisão: " << epsilon << endl
+    << "                      Método da bisseção | Método da posição falsa | Método de Newton-Raphson" << endl
+    << "Intervalo:            " << "[" << a << "][" << b << "]" << endl
+    << "Raiz:                 " << resultBissecao << " | " << resultPF << " | " << resultNewton << endl
+    << "Quantidade de passos: " << passosBissecao << " | " << passosPF << " | " << passosNewton << endl
+    << "Primeiro chute:       " << primeiroChute << endl
+    << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
+}
+
 
 // int main() {
 //     double parametro_a = 1.0; // Valor do parâmetro 'a'

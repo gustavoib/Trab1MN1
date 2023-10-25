@@ -1,0 +1,7 @@
+**.exe
+**.txt
+**.nix
+/.ccls-cache
+/cmake-build-debug
+**.xml
+**.iml

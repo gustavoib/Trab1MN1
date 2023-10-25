@@ -8,7 +8,7 @@
 using namespace std;
 
 // Função que realiza o cálculo da raiz utilizando o método da bisseção
-long double bissecao(double a, double b, double aux, double epsilon) {
+long double bissecao(double a, double b, double aux, double epsilon, int *contador) {
   cout << endl << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Método da bisseção =-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
 
   double fa = f(a, aux), fb = f(b, aux);
@@ -63,13 +63,14 @@ long double bissecao(double a, double b, double aux, double epsilon) {
 
     intervX = intervX / 2;
   }
+  *contador = count;
 
   cout << "Valor de X (Bisseção): " << x << endl << endl;
   return x;
 }
 
 // Função que realiza o cálculo da raiz utilizando o método do posicao falsa
-long double pf(long double a, long double b, double aux, double epsilon) {
+long double pf(long double a, long double b, double aux, double epsilon, int *contador) {
   cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Método da Posição falsa =-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
 
   long double fa = f(a, aux), fb = f(b, aux);
@@ -124,13 +125,14 @@ long double pf(long double a, long double b, double aux, double epsilon) {
       break;
     }
   }
+  *contador = count;
 
   cout << "Valor de X (Posição Falsa): " << x << endl << endl;
   return x;
 }
 
 // Função que realiza o cálculo da raiz utilizando o método de Newton-Raphson
-long double newton(double a, double chute, double epsilon) {
+long double newton(double a, double chute, double epsilon, int *contador) {
   cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Método de Newton =-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
 
   int count = 1;
@@ -172,6 +174,7 @@ long double newton(double a, double chute, double epsilon) {
     count += 1;
   }
 
+  *contador = count;
   cout << "Valor de X (Newton): " << x << endl << endl;
   return x;
 }

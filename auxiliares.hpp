@@ -10,5 +10,6 @@ double fLinha(double x, double aux);
 // Função que encontra o intervalo
 void achaIntervalo(double a, long double &x1, long double &x2, double passo);
 
+void exibeQuadroComparativo(double a, double b, double epsilon, int ajuste, double primeiroChute, double resultBissecao, double resultPF, double resultNewton, int passosBissecao, int passosPF, int passosNewton);
 
 #endif
