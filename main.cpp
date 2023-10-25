@@ -11,7 +11,7 @@ void defaultValues();
 void customValues();
 
 void menu() {
- int aux = system("cls");
+ int aux = system("clear");
 
   cout << "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
   cout << "Escolha qual item você deseja executar:" << endl << endl
@@ -65,7 +65,7 @@ void customValues() {
     cout << "Insira o valor da precisão desejada: " << endl;
     cin >> epsilon;
 
-    int aux = system("cls");
+    int aux = system("clear");
 
     cout << "=-=-=-=-=-=-=-=-=-=-=-=-= Resultado dos Aviões =-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
 
@@ -91,7 +91,7 @@ void customValues() {
     cout << "Insira o valor da precisão desejada: " << endl;
     cin >> epsilon;
 
-    int aux = system("cls");
+    int aux = system("clear");
 
     cout << "=-=-=-=-=-=-=-=-=-=-=-=-= Resultado do Avião =-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
 
