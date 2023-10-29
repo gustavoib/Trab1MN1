@@ -70,16 +70,26 @@ void customValues() {
     cout << "=-=-=-=-=-=-=-=-=-=-=-=-= Resultado dos Aviões =-=-=-=-=-=-=-=-=-=-=-=-=" << endl;
 
     for (int j = 0; j < n; j++) {
-      long double intv1, intv2;
-      double passo = 1;
+        long double intv1, intv2;
+        double passo = 1;
 
-      achaIntervalo(parametrosAjuste[j], intv1, intv2, passo);
-      cout << intv1 << " " << intv2 << endl;
-      long double raiz_bissecao = bissecao(intv1, intv2, parametrosAjuste[j], epsilon, &c1);
-      long double raiz_pf = pf(intv1, intv2, parametrosAjuste[j], epsilon, &c2);
-      long double raiz_newton = newton(parametrosAjuste[j], (intv1 + intv2) / 2, epsilon, &c3);
+        achaIntervalo(parametrosAjuste[j], intv1, intv2, passo);
+        cout << intv1 << " " << intv2 << endl;
+        long double raiz_bissecao = bissecao(intv1, intv2, parametrosAjuste[j], epsilon, &c1);
+        long double raiz_pf = pf(intv1, intv2, parametrosAjuste[j], epsilon, &c2);
+        long double raiz_newton = newton(parametrosAjuste[j], (intv1 + intv2) / 2, epsilon, &c3);
 
-      cout << "| Raízes do " << j + 1 << "º avião: Bissecao = " << raiz_bissecao << ", PF = " << raiz_pf << ", Newton = " << raiz_newton << " |" << endl;
+        cout << "| Raízes do " << j + 1 << "º avião: Bissecao = " << raiz_bissecao << ", PF = " << raiz_pf << ", Newton = " << raiz_newton << " |" << endl;
+
+        cout << "Se desejar ver o quadro comparativo de cada método, digite [s]. Caso contrário, digite [n]" << endl;
+        char item;
+        cin >> item;
+
+        if(item == 's'){
+            exibeQuadroComparativo(intv1, intv2, epsilon, 1, (intv1 + intv2) / 2,
+            raiz_bissecao, raiz_pf, raiz_newton, c1, c2, c3);
+        }
+
     }
     cout << endl;
   } else {
@@ -105,6 +115,15 @@ void customValues() {
     cout << "| Raízes do  avião: Bissecao = " << raiz_bissecao << ", PF = " << raiz_pf << ", Newton = " << raiz_newton << " |" << endl;
 
     cout << endl;
+
+    cout << "Se desejar ver o quadro comparativo de cada método, digite [s]. Caso contrário, digite [n]" << endl;
+    char item;
+    cin >> item;
+
+    if(item == 's'){
+      exibeQuadroComparativo(intv1, intv2, epsilon, 1, (intv1 + intv2) / 2,
+                             raiz_bissecao, raiz_pf, raiz_newton, c1, c2, c3);
+    }
   }
 
   verificaVolta();
